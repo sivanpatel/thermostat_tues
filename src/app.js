@@ -1,6 +1,49 @@
 thermostat = new Thermostat();
 
+var temperature = $('#temperature')[0];
+ShowTemperature = function(){
+    temperature.innerHTML = thermostat.temperature;
+  };
+TemperatureColour = function() {
+  temperature.style.color = thermostat.colourUpdate();
+  };
 
+$( document ).ready(function(){
+
+  $("#temperature").show(function(){
+    ShowTemperature();
+    TemperatureColour();
+  });
+
+  $("#up").click(function(){
+    ShowTemperature();
+    thermostat.raise();
+    TemperatureColour();
+  });
+
+  $("#down").click(function(){
+    ShowTemperature();
+    thermostat.lower();
+    TemperatureColour();
+  });
+
+  $("#reset").click(function(){
+    ShowTemperature();
+    thermostat.resetTemperature();
+    TemperatureColour();
+  });
+
+  $("#powerMode").change(function(){
+    if(this.checked) {
+      thermostat.powerSaveSwitchOn();
+    } else {
+      thermostat.powerSaveSwitchOff();
+    };
+    ShowTemperature();
+    TemperatureColour();
+  });
+
+});
 
 // JAVASCRIPT STUFF
 // var temperature = document.getElementById('temperature');
