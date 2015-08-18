@@ -1,39 +1,37 @@
 thermostat = new Thermostat();
 
 var temperature = $('#temperature')[0];
-ShowTemperature = function(){
-    temperature.innerHTML = thermostat.temperature;
-  };
+ShowTemperature = function() {
+  temperature.innerHTML = thermostat.temperature;
+};
 TemperatureColour = function() {
   temperature.style.color = thermostat.colourUpdate();
-  };
+};
 
-$( document ).ready(function(){
-
-  $("#temperature").show(function(){
+$( document ).ready(function() {
+  $('#temperature').show(function() {
     ShowTemperature();
     TemperatureColour();
-  });
-
-  $("#up").click(function(){
-    ShowTemperature();
+  })
+  $('#up').click(function() {
     thermostat.raise();
+    ShowTemperature();
     TemperatureColour();
   });
 
-  $("#down").click(function(){
-    ShowTemperature();
+  $('#down').click(function() {
     thermostat.lower();
-    TemperatureColour();
-  });
-
-  $("#reset").click(function(){
     ShowTemperature();
-    thermostat.resetTemperature();
     TemperatureColour();
   });
 
-  $("#powerMode").change(function(){
+  $('#reset').click(function() {
+    thermostat.resetTemperature();
+    ShowTemperature();
+    TemperatureColour();
+  })
+
+  $('#powerMode').change(function() {
     if(this.checked) {
       thermostat.powerSaveSwitchOn();
     } else {
@@ -45,7 +43,9 @@ $( document ).ready(function(){
 
 });
 
-// JAVASCRIPT STUFF
+
+// JAVASCRIPT
+
 // var temperature = document.getElementById('temperature');
 // TemperatureColour = function() {
 //   temperature.innerHTML = thermostat.temperature;
